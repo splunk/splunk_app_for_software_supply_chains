@@ -1,17 +1,17 @@
 {
-  "name": "splunk_app_for_github",
+  "name": "Splunk_App_for_Software_Supply_Chains",
   "version": "X.Y.Z",
-  "description": "GitHub Audit Log Monitoring",
+  "description": "Splunk_App_for_Software_Supply_Chains",
   "license": "MIT",
   "author": "Splunk",
   "contributors": [
-    "Doug Erkkila <derkkila@splunk.com> (https://www.splunk.com)",
-    "Bassem Dghaidi <stump@example.com> (https://www.github.com)"
+    "Chad Tripod <ctripod@splunk.com> (https://www.splunk.com)",
+    "Doug Erkkila <derkkila@splunk.com> (https://www.splunk.com)"
   ],
   "private": true,
   "splunk": {
-    "appName": "splunk_app_for_github",
-    "appSource": "splunk_app_for_github"
+    "appName": "Splunk_App_for_Software_Supply_Chains",
+    "appSource": "Splunk_App_for_Software_Supply_Chains"
   },
   "scripts": {
     "build": "lerna run build",
