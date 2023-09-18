@@ -20,6 +20,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v4
+        with:
+          # Semantic version range syntax or exact version of a Python version
+          python-version: '3.9'
+          # Optional - x64 or x86 architecture, defaults to x64
+          architecture: 'x64'
+
       - name: Install deps
         uses: CultureHQ/actions-yarn@master
         with:
@@ -35,11 +43,30 @@ jobs:
         with:
           args: build
 
-      - name: Update Permissions
+      - name: Update Version Number
         run: |
-          chmod +x ./.github/actions/appinspect_cli/entrypoint.sh
+          old_str="X.Y.Z"
+          new_str="1.0.0"
+          sed -i "s/$old_str/$new_str/g" package.json
+          sed -i "s/$old_str/$new_str/g" ./Splunk_App_for_Software_Supply_Chain/default/app.conf
+
+      - name: Install slim
+        run: |
+          pip install https://download.splunk.com/misc/packaging-toolkit/splunk-packaging-toolkit-1.0.1.tar.gz
+
+      - name: Create package
+        run: |
+          mkdir build
+          slim package ./Splunk_App_for_Software_Supply_Chain
 
       - name: Run App Inspect CLI
-        uses: ./.github/actions/appinspect_cli
+        uses: splunk/appinspect-cli-action@v1.5
         with:
-          app-path: Splunk_App_for_Software_Supply_Chain/
+          app_path: Splunk_App_for_Software_Supply_Chain-1.0.0.tar.gz
+          included_tags: cloud, splunk_appinspect
+
+      - name: Upload package
+        uses: actions/upload-artifact@v3
+        with:
+          name: Splunk_App_for_Software_Supply_Chain-1.0.0.tar.gz
+          path: ./Splunk_App_for_Software_Supply_Chain-1.0.0.tar.gz
