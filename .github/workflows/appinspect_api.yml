@@ -24,7 +24,6 @@ jobs:
                 old_str="X.Y.Z"
                 new_str=$(echo "${GITHUB_REF#refs/*/}" | tr -d "v")
                 sed -i "s/$old_str/$new_str/g" package.json
-                sed -i "s/$old_str/$new_str/g" ./Splunk_App_for_Software_Supply_Chain/setup.py
                 sed -i "s/$old_str/$new_str/g" ./Splunk_App_for_Software_Supply_Chain/default/app.conf
                 cat package.json
                 cat ./Splunk_App_for_Software_Supply_Chain/setup.py
