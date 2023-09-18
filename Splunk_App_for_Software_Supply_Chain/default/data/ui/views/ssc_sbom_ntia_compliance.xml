@@ -1,0 +1,17 @@
+<dashboard version="1.1" script="table_icons_inline.js" stylesheet="table_decorations.css" theme="dark">
+  <label>SBOM NTIA Compliance</label>
+  <description>Do your Apps meet the NTIA minimum Requirements</description>
+  <row>
+    <panel>
+      <table id="table1">
+        <title>Render Icons based on rangemap result</title>
+        <search>
+          <query>index=_internal | stats count by sourcetype,source,host</query>
+          <earliest>-1h</earliest>
+        </search>
+        <option name="count">20</option>
+        <option name="drilldown">none</option>
+      </table>
+    </panel>
+  </row>
+</dashboard>

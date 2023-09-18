@@ -1,0 +1,120 @@
+<dashboard version="1.1">
+  <label>Welcome Page</label>
+  <row>
+    <panel>
+      <html>
+        <style>
+          .welcome-header {
+            padding: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #F4F6F7;
+          }
+        </style>
+        <div class="welcome-header">
+          <h1>Welcome to the Splunk App for Software Supply Chain!</h1>
+          <p>
+            This App was created to provide consolodated views across all of your CI/CD tools in your Software Delivery Life Cycle.  By Searching the data from these tools, Splunk can quickly provide you valuable insights that can help reduce downtime and security incidents. 
+          </p>
+        </div>
+      </html>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <html>
+        <style>
+          .welcome-header {
+            padding: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #F4F6F7;
+          }
+        </style>
+        <div>
+          <h2><b>Source Control Management (SCM) - Github, Gitlab, Bitbucket...</b></h2>
+          <p>
+            Use the data from your SCM repositories to drive value in Splunk across the SDLC and your "as code" efforts.
+            <ol>
+              <li>The "Enterprise Server Monitor" drop down has several dashboards that report on the health and performance of your GHES environment</li>
+              <li>"Audit" drop down works for GHES as well as GitHub.com audit logs</li>
+              <li>The <a href="alerts">Alerts</a> menu item contains all GitHub recommended alerts</li>
+              <li><a href="audit_log_activity">Audit Log Activity</a> provides a highlevel overview of what activity is going on in GitHub.</li>
+              <li><a href="repository_audit">Repository Audit</a> lets you review changes to individual or groups of repositories </li>
+              <li><a href="user_audit">User Change Audit</a> is the best place to review actions taken by or made to individual users.</li>
+            </ol>
+          </p>
+        </div>
+      </html>
+    </panel>
+    <panel>
+      <html>
+        <style>
+          .welcome-header {
+            padding: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #F4F6F7;
+          }
+        </style>
+        <div>
+          <h2><b>Software Build! The CI/CD tools that build and test your code in 1 spot</b></h2>
+          <p>
+            With every code commit triggers a Continuous Integration (CI) event and begins the testings and validation steps need to provide high quality secure code.
+            <ol>
+              <li>The <a href="security_alert_overview"> Advanced Security Overview</a> dashboard gives insight into the security posture of your GitHub Organization</li>
+              <li>The <a href="code_scanning_overview"> Code Scanning Alerts</a> dashboard gives you access to alerts created by Code Scanning within your Organization</li>
+              <li>The <a href="secret_scanning_overview"> Secret Scanning Alerts</a> dashboard provides visibility into secrets like API keys and personal access tokens that have been checked into your repositories</li>
+            </ol>
+          </p>
+        </div>
+      </html>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <html>
+        <style>
+          .welcome-header {
+            padding: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #F4F6F7;
+          }
+        </style>
+        <div>
+          <h2><b>Package and Deploy Applications</b></h2>
+          <p>
+            Artifact Creation and final steps of deploying to production for Continuous Deployment / Delivery (CD) to any cloud environment.
+            <ol>
+              <li><a href="https://github.com/splunk/github_app_for_splunk/blob/main/docs/ghe_audit_logs.MD" target="_blank">Audit Log</a> data is available through a Splunk Add-On</li>
+              <li><a href="https://github.com/splunk/github_app_for_splunk/blob/main/docs/github_webhooks.MD" target="_blank">Rich commit, pull request, and Code Scanning</a> data is available through GitHub Webhooks</li>
+            </ol>
+          </p>
+        </div>
+      </html>
+    </panel>
+    <panel>
+      <html>
+        <style>
+          .welcome-header {
+            padding: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #F4F6F7;
+          }
+        </style>
+        <div>
+          <h2><b>Software Bill of Materials (SBOM)</b></h2>
+          <p>
+            Access to all of the ingredients that build your software.  Allowing you to search for the next "Log4j", Maintain compliance with executive order 14028, and do proactive Vulnerability Management with Risk reduction.
+            <ol>
+              <li><a href="https://www.whitehouse.gov/briefing-room/presidential-actions/2021/05/12/executive-order-on-improving-the-nations-cybersecurity/" target="_blank">executive order 14028</a> executive order 14028</li>
+              <li><a href="https://www.cisa.gov/news-events/news/apache-log4j-vulnerability-guidance" target="_blank">The next "Log4j"</a> Find the next high risk vulnerability in minutes</li>
+            </ol>
+          </p>
+        </div>
+      </html>
+    </panel>
+  </row>
+</dashboard>

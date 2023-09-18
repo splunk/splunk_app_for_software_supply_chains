@@ -1,0 +1,318 @@
+<form version="1.1" theme="dark">
+  <label>SBOM Search</label>
+  <description>Statistics and Analytics on all of your SBOM data sent to Splunk</description>
+  <!-- Global search to populate everything in the panel -->
+  <fieldset submitButton="false">
+    <input type="time" token="field1">
+      <label></label>
+      <default>
+        <earliest>-30d@d</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+    <input type="dropdown" token="component_name" searchWhenChanged="true">
+      <label>Search SBOM Components</label>
+      <fieldForLabel>component_name</fieldForLabel>
+      <fieldForValue>component_name</fieldForValue>
+      <search>
+        <query>`sbom_indexes` | fields component_name, version_string | eval combined_data=mvzip(component_name, version_string) | mvexpand combined_data | rex field=combined_data "(?&lt;component_name&gt;[^,]*),(?&lt;version_string&gt;[^,]*)" | dedup component_name | table component_name</query>
+        <earliest>0</earliest>
+        <latest></latest>
+      </search>
+      <choice value="*">All</choice>
+      <default>*</default>
+      <initialValue>*</initialValue>
+      <prefix>*</prefix>
+      <suffix>*</suffix>
+    </input>
+    <input type="dropdown" token="version_string" searchWhenChanged="true">
+      <label>Search SBOM Component Version</label>
+      <default>*</default>
+      <choice value="*">All</choice>
+      <fieldForLabel>version_string</fieldForLabel>
+      <fieldForValue>version_string</fieldForValue>
+      <search>
+        <query>index=sbom | search component_name=$component_name$ | fields component_name, version_string | eval combined_data=mvzip(component_name, version_string) | mvexpand combined_data | rex field=combined_data "(?&lt;component_name&gt;[^,]*),(?&lt;version_string&gt;[^,]*)" | dedup version_string | table version_string</query>
+        <earliest>-90d@d</earliest>
+        <latest>now</latest>
+      </search>
+      <initialValue>*</initialValue>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <html>
+      <!-- Button trigger-->
+      <a href="#" id="btn1" class="btnModalInfo" data-toggle="modal" data-target="#desc1">
+        <!-- Text for the button -->
+        <span class="icon-large icon-info-circle" aria-hidden="true"/> <b>Click for dashboard information</b>
+      </a>
+ <div class="modal fade" id="desc1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog">
+      <div class="modal-content">
+      <div class="modal-header" style="padding-top: 2px; padding-bottom: 2px">
+        <!-- Header of pop up -->
+        <row>
+          <div>
+            <h2 class="modal-title text-center" id="myModalLabel">
+              
+              <!-- Header text -->
+              <!--====== DASHBOARD NAME ======= -->
+              
+                  Software Bill of Materials (SBOM) monitoring and search
+            </h2>
+          </div>
+        </row>
+      </div>
+      <div class="modal-body" style="overflow:auto">
+        
+        <h1>
+          
+          <b>Description</b>
+        </h1>
+        
+        <!--====== DASHBOARD FULL DESCRIPTION ======= -->
+        
+        This dashboard will show all SBOM Data for CycloneDX, SPDX, and SWID formats.  Setting up data input is easy, just send to Splunk HEC.
+
+        <hr/>
+        <h1>
+          
+          <b>SBOM Executive Order 14028</b>
+  
+        </h1>
+        <h2>Minimum Fields Required for Executive Order per guidance from the (NTIA) National Telecommunications and Information Administration</h2>What you need to know for compliance and Audit<br/>
+        <h2>Usage</h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula odio, malesuada ut consectetur lobortis, imperdiet ac metus. Vestibulum sagittis vestibulum dolor, quis volutpat mi semper et.<br/>
+        <h2>Permission</h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula odio, malesuada ut consectetur lobortis, imperdiet ac metus. Vestibulum sagittis vestibulum dolor, quis volutpat mi semper et.<br/>
+        <h2>Restore as user?</h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula odio, malesuada ut consectetur lobortis, imperdiet ac metus. Vestibulum sagittis vestibulum dolor, quis volutpat mi semper et.<br/>
+        <h2>Scope/Sharing</h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula odio, malesuada ut consectetur lobortis, imperdiet ac metus. Vestibulum sagittis vestibulum dolor, quis volutpat mi semper et. <br/>Note: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ligula odio, malesuada ut consectetur lobortis, imperdiet ac metus. Vestibulum sagittis vestibulum dolor, quis volutpat mi semper et.<br/>        
+    </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+      </div>
+      </div>
+      </div>
+    </html>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <!-- 3 elements are grouped into the left column -->
+      <single>
+        <title># SBOM Apps</title>
+        <search>
+          <query>| datamodel DevOps_SBOM sbom search | dedup sbom.name | stats count(sbom.name)</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="colorBy">trend</option>
+        <option name="height">143</option>
+        <option name="numberPrecision">0</option>
+        <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="trendDisplayMode">percent</option>
+        <option name="trendInterval">-1w</option>
+        <option name="underLabel">compared to 1 week before</option>
+        <option name="unitPosition">before</option>
+        <option name="useColors">1</option>
+        <option name="useThousandSeparators">1</option>
+      </single>
+      <single>
+        <title># SBOM Components</title>
+        <search>
+          <query>| datamodel DevOps_SBOM sbom search | dedup sbom.component_name | stats count(sbom.component_name)</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="colorBy">trend</option>
+        <option name="height">143</option>
+        <option name="numberPrecision">0</option>
+        <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="trendDisplayMode">percent</option>
+        <option name="trendInterval">-1w</option>
+        <option name="underLabel">compared to 1 week before</option>
+        <option name="unitPosition">before</option>
+        <option name="useColors">1</option>
+        <option name="useThousandSeparators">1</option>
+      </single>
+      <single>
+        <title>#SBOM Vulnerabilities Total</title>
+        <search>
+          <query>| makeresults count=14 | stats count</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="colorBy">trend</option>
+        <option name="height">143</option>
+        <option name="numberPrecision">0</option>
+        <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="trendDisplayMode">percent</option>
+        <option name="trendInterval">-1w</option>
+        <option name="underLabel">compared to 1 week before</option>
+        <option name="unitPosition">after</option>
+        <option name="useColors">1</option>
+        <option name="useThousandSeparators">1</option>
+      </single>
+      <single>
+        <title># SBOM New Vulnerbilities</title>
+        <search>
+          <query>| makeresults count=6 | stats count</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="colorBy">trend</option>
+        <option name="height">143</option>
+        <option name="numberPrecision">0</option>
+        <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="trendDisplayMode">percent</option>
+        <option name="trendInterval">-1w</option>
+        <option name="underLabel">compared to 1 week before</option>
+        <option name="unitPosition">before</option>
+        <option name="useColors">1</option>
+        <option name="useThousandSeparators">1</option>
+      </single>
+      <single>
+        <title># SBOM Risk Score</title>
+        <search>
+          <query>| makeresults count=63 | stats count</query>
+          <earliest>0</earliest>
+          <latest></latest>
+        </search>
+        <option name="colorBy">trend</option>
+        <option name="height">143</option>
+        <option name="numberPrecision">0</option>
+        <option name="rangeColors">["0x53a051","0x0877a6","0xf8be34","0xf1813f","0xdc4e41"]</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="trendDisplayMode">percent</option>
+        <option name="trendInterval">-1w</option>
+        <option name="underLabel">compared to 1 week before</option>
+        <option name="unitPosition">before</option>
+        <option name="useColors">1</option>
+        <option name="useThousandSeparators">1</option>
+      </single>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <title>SBOM Top Software Components</title>
+      <chart>
+        <search>
+          <query>| datamodel DevOps_SBOM sbom search | search sbom.component_name=$component_name$ AND sbom.component_version=$version_string$ | top sbom.component_name</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisTitleX.visibility">visible</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisX.abbreviation">none</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.abbreviation">none</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.axisY2.abbreviation">none</option>
+        <option name="charting.axisY2.enabled">0</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <option name="charting.chart">pie</option>
+        <option name="charting.chart.bubbleMaximumSize">50</option>
+        <option name="charting.chart.bubbleMinimumSize">10</option>
+        <option name="charting.chart.bubbleSizeBy">area</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.showDataLabels">none</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.layout.splitSeries.allowIndependentYRanges">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.mode">standard</option>
+        <option name="charting.legend.placement">right</option>
+        <option name="charting.lineWidth">2</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="trellis.enabled">0</option>
+        <option name="trellis.scales.shared">1</option>
+        <option name="trellis.size">medium</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>SBOM Component Versions</title>
+      <table>
+        <search>
+          <query>| datamodel DevOps_SBOM sbom search | search sbom.component_name=$component_name$ AND sbom.component_version=$version_string$ | stats count by sbom.component_name, sbom.component_version | sort - count</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+    <panel>
+      <title>SBOM Running Components Over Time</title>
+      <chart>
+        <search>
+          <query>| tstats prestats=false summariesonly=false allow_old_summaries=false count from datamodel=DevOps_SBOM where "sbom.component_name"="$component_name$" by _time, sbom.component_name span=1d | mvexpand sbom.component_name | timechart minspan=1d useother=false count by sbom.component_name</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.legend.placement">bottom</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <html>
+        <style>
+          .custom-tooltip{
+              display: inline;
+              position: absolute;
+          }
+          .custom-tooltip:hover:after{
+            background: #333 ;
+            background: rgba(0,0,0,.8) ;
+            border-radius: 5px ;
+            bottom: 26px ;
+            color: #fff ;
+            content: attr(title) ;
+            left: 20% ;
+            padding: 5px 15px ;
+            position: absolute ;
+            z-index: 98;
+            width: 220px;
+        }
+        .custom-tooltip:hover:before{
+          border: solid;
+          border-color: #333 transparent;
+          border-width: 6px 6px 0 6px;
+          bottom: 20px ;
+          content: "" ;
+          left: 50% ;
+          position: absolute ;
+          z-index: 99 ;
+        }
+        </style>
+        <a title="This panel shows Robot Count and number of Events for those Robots" class="custom-tooltip">Explain Panel</a>
+      </html>
+      <event>
+        <title>Component Ownership</title>
+        <search>
+          <query>`sbom_indexes` | fields + creationinfo.created, creationinfo.creators{}, name, component, author_name, component_name, component_unique_identifier, dataLicense, packages{}.externalRefs{}.referenceType, packages{}.downloadLocation</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <fields>creationinfo.created, creationinfo.creators{}, name, component, author_name, component_name, component_unique_identifier, dataLicense, packages{}.externalRefs{}.referenceType, packages{}.downloadLocation</fields>
+        <option name="count">1</option>
+        <option name="refresh.display">none</option>
+        <option name="type">table</option>
+      </event>
+    </panel>
+  </row>
+</form>
