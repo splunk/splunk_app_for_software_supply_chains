@@ -1,7 +1,7 @@
 {
-  "name": "Splunk_App_for_Software_Supply_Chains",
+  "name": "Splunk_App_for_Software_Supply_Chain",
   "version": "X.Y.Z",
-  "description": "Splunk_App_for_Software_Supply_Chains",
+  "description": "Splunk_App_for_Software_Supply_Chain",
   "license": "MIT",
   "author": "Splunk",
   "contributors": [
@@ -10,8 +10,8 @@
   ],
   "private": true,
   "splunk": {
-    "appName": "Splunk_App_for_Software_Supply_Chains",
-    "appSource": "Splunk_App_for_Software_Supply_Chains"
+    "appName": "Splunk_App_for_Software_Supply_Chain",
+    "appSource": "Splunk_App_for_Software_Supply_Chain"
   },
   "scripts": {
     "build": "lerna run build",
