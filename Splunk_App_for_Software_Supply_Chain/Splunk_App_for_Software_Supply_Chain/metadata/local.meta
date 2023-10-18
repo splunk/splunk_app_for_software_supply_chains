@@ -1,0 +1,123 @@
+[app/ui]
+version = 9.0.1
+modtime = 1694499289.197763000
+
+[app/launcher]
+version = 9.0.1
+modtime = 1694499289.202170000
+
+[props/ssc_cyclonedx_json]
+owner = ctripod
+version = 9.0.1
+modtime = 1694533787.991226000
+
+[props/ssc_spdx_json]
+owner = ctripod
+version = 9.0.1
+modtime = 1694533809.513790000
+
+[props/ssc_spdx_json/FIELDALIAS-sbom_aliases]
+version = 9.0.1
+modtime = 1694578129.625197000
+
+[views/ssc_sbom_search]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = ctripod
+version = 9.0.1
+modtime = 1697578136.688953000
+
+[views/ssc_sbom_vulnerabilities]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = ctripod
+version = 9.0.1
+modtime = 1695759365.206201000
+
+[views/ssc_welcome_page]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = ctripod
+version = 9.0.1
+modtime = 1697526057.462190000
+
+[macros/sbom_macro]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = ctripod
+version = 9.0.1
+modtime = 1694718555.589287000
+
+[macros/jira_macro]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = ctripod
+version = 9.0.1
+modtime = 1694718684.888389000
+
+[macros/gitlab_macro]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = ctripod
+version = 9.0.1
+modtime = 1694718693.730328000
+
+[macros/github_macro]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = ctripod
+version = 9.0.1
+modtime = 1694718702.673299000
+
+[inputs/http%3A%2F%2FJira]
+access = read : [ admin ], write : [ admin ]
+export = none
+owner = admin
+version = 9.0.1
+modtime = 1694720109.726441000
+
+[views/ssc_source_control]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = ctripod
+version = 9.0.1
+modtime = 1697530309.129096000
+
+[props/cyclonedx_json/FIELDALIAS-sbom_aliases]
+version = 9.0.1
+modtime = 1695747932.907716000
+
+[indexes/istio]
+owner = ctripod
+version = 9.0.1
+modtime = 1696284399.231048000
+
+[inputs/http%3A%2F%2Fistio]
+access = read : [ admin ], write : [ admin ]
+export = none
+owner = ctripod
+version = 9.0.1
+modtime = 1696284453.894311000
+
+[views/ssc_scan_vulnerabilities_]
+owner = ctripod
+version = 9.0.1
+modtime = 1696875310.287598000
+
+[props/cyclonedx_json]
+version = 9.0.1
+modtime = 1697173101.791214000
+
+[views/ssc_developer_notification]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = ctripod
+version = 9.0.1
+modtime = 1697527915.077368000
+
+[views/ssc_splunk_observabiliy]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = ctripod
+version = 9.0.1
+modtime = 1697529700.900566000

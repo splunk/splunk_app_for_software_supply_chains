@@ -1,0 +1,31 @@
+#[sbom]
+#coldPath = $SPLUNK_DB/sbom/colddb
+#enableDataIntegrityControl = 0
+#enableTsidxReduction = 0
+#homePath = $SPLUNK_DB/sbom/db
+#maxTotalDataSizeMB = 10240
+#thawedPath = $SPLUNK_DB/sbom/thaweddb
+
+#[gitlab]
+#coldPath = $SPLUNK_DB/gitlab/colddb
+#enableDataIntegrityControl = 0
+#enableTsidxReduction = 0
+#homePath = $SPLUNK_DB/gitlab/db
+#maxTotalDataSizeMB = 10240
+#thawedPath = $SPLUNK_DB/gitlab/thaweddb
+
+#[github]
+#coldPath = $SPLUNK_DB/github/colddb
+#enableDataIntegrityControl = 0
+#enableTsidxReduction = 0
+#homePath = $SPLUNK_DB/github/db
+#maxTotalDataSizeMB = 10240
+#thawedPath = $SPLUNK_DB/github/thaweddb
+
+#[jira]
+#coldPath = $SPLUNK_DB/jira/colddb
+#enableDataIntegrityControl = 0
+#enableTsidxReduction = 0
+#homePath = $SPLUNK_DB/jira/db
+#maxTotalDataSizeMB = 10240
+#thawedPath = $SPLUNK_DB/jira/thaweddb

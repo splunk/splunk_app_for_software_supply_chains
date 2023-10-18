@@ -1,0 +1,36 @@
+[http://sbom_webhook_reciever]
+description = Splunk SBOM HEC Collector
+disabled = 0
+host = sbom_hec
+index = sbom
+indexes = sbom
+connection_host = ip
+allowQueryStringAuth = true
+
+#[http://gitlab_webhook_reciever]
+#description = Splunk Gitlab HEC Collector
+#disabled = 0
+#host = gitlab_hec
+#index = gitlab
+#indexes = gitlab
+#connection_host = ip
+#allowQueryStringAuth = true
+
+#[http://github_webhook_reciever]
+#description = Splunk Github HEC Collector
+#disabled = 0
+#host = github_hec
+#index = github
+#indexes = github
+#connection_host = ip
+#allowQueryStringAuth = true
+
+#[http://jira_webhook_reciever]
+#description = Splunk Github HEC Collector
+#disabled = 0
+#host = jira_hec
+#index = jira
+#indexes = jira
+#connection_host = ip
+#allowQueryStringAuth = true
+

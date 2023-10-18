@@ -1,0 +1,28 @@
+<nav>
+    <view name="ssc_welcome_page" default='true' />
+  <collection label="SSC Developer Notification">
+    <view name="ssc_developer_notification" />
+  </collection>
+  <collection label="Source Control (SCM)">
+    <view name="ssc_source_control" />
+  </collection>
+  <collection label="Software Build (CI) and Deploy (CD)">
+    <view name="ssc_sbom_search" />
+  </collection>
+  <collection label="Software Bill of Materials (SBOM) Artifact">
+    <view name="ssc_sbom_search" />
+    <view name="ssc_sbom_vulnerabilities" />
+  </collection>
+  <collection label="SSC Vulnerability Scanning">
+    <view name="ssc_source_control" />
+  </collection>
+  <collection label="Splunk Observability">
+    <view name="ssc_splunk_observabiliy" />
+  </collection>
+  <collection label="Splunk System">
+    <view name="search" />
+    <view name="dashboards" />
+    <view name="alerts" />
+    <view name="reports" />
+  </collection>
+</nav>
