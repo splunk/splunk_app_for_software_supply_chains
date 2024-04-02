@@ -1,0 +1,72 @@
+<form version="1.1" theme="dark">
+  <label>SBOM Vulnerabilities</label>
+  <fieldset submitButton="false">
+    <input type="time" token="field1">
+      <label></label>
+      <default>
+        <earliest>-30d@d</earliest>
+        <latest>now</latest>
+      </default>
+    </input>
+  </fieldset>
+  <row>
+    <panel>
+      <title>Top Vulnerabilities found in SBOM - CVE from NVD</title>
+      <chart>
+        <search>
+          <query>index=sbom sourcetype=cyclonedx_json | top vulnerabilities{}.id</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+    <panel>
+      <title>Top Vulnerabilities CVE Severity</title>
+      <viz type="semicircle_donut.semicircle_donut">
+        <search>
+          <query>index=sbom sourcetype=cyclonedx_json | stats count by vulnerabilities{}.ratings{}.severity</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="drilldown">all</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="semicircle_donut.semicircle_donut.cutoutPercentage">50</option>
+        <option name="semicircle_donut.semicircle_donut.legendPosition">top</option>
+        <option name="semicircle_donut.semicircle_donut.type">half</option>
+      </viz>
+    </panel>
+    <panel>
+      <title>Top Vulnerabilities CVSS Scores</title>
+      <chart>
+        <search>
+          <query>index=sbom sourcetype=cyclonedx_json | top vulnerabilities{}.ratings{}.score | sort - vulnerabilities{}.ratings{}.score</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="charting.axisTitleX.text">CVSS Score</option>
+        <option name="charting.axisTitleY.text">Count of Components</option>
+        <option name="charting.chart">bar</option>
+        <option name="charting.drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <title>Component Declared Vulnerabilities</title>
+        <search>
+          <query>index=sbom sourcetype=cyclonedx_json | eval zip=mvzip(vul_affects_ref,vul_description,"##") | eval zip=mvzip(zip,vul_recommendations,"##") | eval zip=mvzip(zip,vul_id,"##") | eval zip=mvzip(zip,vul_ratings_method,"##")| eval zip=mvzip(zip,vul_ratings_score,"##")| eval zip=mvzip(zip,vul_ratings_severity,"##") | eval zip=mvzip(zip,vul_ratings_source_url,"##") | mvexpand zip | rex field=zip "(?&lt;vul_affects_ref&gt;.*)##(?&lt;vul_description&gt;.*)##(?&lt;vul_recommendations&gt;.*)##(?&lt;vul_id&gt;.*)##(?&lt;vul_ratings_method&gt;.*)##(?&lt;vul_ratings_score&gt;.*)##(?&lt;vul_ratings_severity&gt;.*)##(?&lt;vul_ratings_source_url&gt;.*)" | fields - zip | table vul_affects_ref vul_id vul_ratings_score vul_ratings_severity vul_description vul_recommendations vul_ratings_source_url</query>
+          <earliest>$field1.earliest$</earliest>
+          <latest>$field1.latest$</latest>
+        </search>
+        <option name="drilldown">cell</option>
+        <option name="refresh.display">progressbar</option>
+        <option name="rowNumbers">true</option>
+      </table>
+    </panel>
+  </row>
+</form>

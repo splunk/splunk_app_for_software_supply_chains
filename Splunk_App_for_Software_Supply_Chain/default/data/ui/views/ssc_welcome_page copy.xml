@@ -1,0 +1,124 @@
+<dashboard version="1.1">
+  <label>SSC Welcome Page</label>
+  <row>
+    <panel id="scm">
+      <html>
+        <style>
+          .welcome-header {
+            padding: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #F4F6F7;
+          }
+        </style>
+        <div>
+          <h2>
+            <b>Source Control Management (SCM) - Github, Gitlab...</b>
+          </h2>
+          <p>
+            Use the data from your SCM repositories to drive value in Splunk across the SDLC and your "as code" efforts.
+            <ol>
+              <li>The <a href="https://github.com/splunk/github_app_for_splunk/blob/main/docs/github_webhooks.MD" target="_blank">Send Data from Github to Splunk</a> provides a highlevel overview of what activity is going on in GitHub</li>
+              <li>
+                <a href="https://lantern.splunk.com/Data_Descriptors/GitLab/Sending_GitLab_webhook_data_to_the_Splunk_platform" target="_blank">Send Gitlab webhooks from Gitlab to Splunk</a> provides a highlevel overview of what activity is going on in Gitlab.</li>
+              <li>
+                <a href="https://lantern.splunk.com/Data_Descriptors/GitLab/Getting_Gitlab_CI%2F%2FCD_data_out_of_a_Gitlab_Pipeline_into_Splunk" target="_blank">Gitlab CI/CD</a> build and Deploy Events from Gitlab</li>
+            </ol>
+          </p>
+        </div>
+      </html>
+    </panel>
+    <panel id="ci">
+      <html>
+        <style>
+          .welcome-header {
+            padding: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #F4F6F7;
+          }
+        </style>
+        <div>
+          <h2>
+            <b>Software Build! The CI/CD tools that build and test your code in 1 spot</b>
+          </h2>
+          <p>
+            With every code commit triggers a Continuous Integration (CI) event and begins the testings and validation steps need to provide high quality secure code.
+            <ol>
+              <li>The <a href="https://splunkbase.splunk.com/app/3332" target="_blank">Jenkins App for Splunk</a> insights to all of your Jenkins Build and Deploy Pipelines</li>
+            </ol>
+          </p>
+        </div>
+      </html>
+    </panel>
+  </row>
+  <row>
+    <panel id="cd">
+      <html>
+        <style>
+          .welcome-header {
+            padding: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #F4F6F7;
+          }
+        </style>
+        <div>
+          <h2>
+            <b>Package and Deploy Applications (Artifacts and Deployment Environments)</b>
+          </h2>
+          <p>
+            Analysis of artifacts (Containers, YAML files, What Code is deployed in which environment, Immudiable deployments) 
+            <ol>
+              <li>
+                <a href="https://github.com/splunk/github_app_for_splunk/blob/main/docs/ghe_audit_logs.MD" target="_blank">Audit Log</a> data is available through a Splunk Add-On</li>
+              <li>
+                <a href="https://github.com/splunk/github_app_for_splunk/blob/main/docs/github_webhooks.MD" target="_blank">Rich commit, pull request, and Code Scanning</a> data is available through GitHub Webhooks</li>
+            </ol>
+          </p>
+        </div>
+      </html>
+    </panel>
+    <panel id="sbom">
+      <html>
+        <style>
+          .welcome-header {
+            padding: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #F4F6F7;
+          }
+        </style>
+        <div>
+          <h2>
+            <b>Software Bill of Materials (SBOM)</b>
+          </h2>
+          <p>
+            Access to all of the ingredients that build your software.  Allowing you to search for the next "Log4j", Maintain compliance with executive order 14028, and do proactive Vulnerability Management with Risk reduction.
+            <ol>
+              <li>
+                <a href="https://www.whitehouse.gov/briefing-room/presidential-actions/2021/05/12/executive-order-on-improving-the-nations-cybersecurity/" target="_blank">executive order 14028</a> executive order 14028</li>
+              <li>
+                <a href="https://www.cisa.gov/news-events/news/apache-log4j-vulnerability-guidance" target="_blank">The next "Log4j"</a> Find the next high risk vulnerability in minutes</li>
+              <li>
+                <a href="https://www.splunk.com/en_us/blog/learn/sbom-software-bill-of-materials.html" target="_blank">Splunk SBOM blogs</a> understand how Splunk can help</li>
+              <li>
+                <a href="https://www.splunk.com/en_us/blog/industries/harmonizing-the-federal-effort-on-automating-software-bill-of-materials.html" target="_blank">Splunk SBOM Monitoring for US Goverment requirements</a> SBOM in the Public Sector</li>
+            </ol>
+          </p>
+        </div>
+      </html>
+    </panel>
+  </row>
+  <row>
+    <panel id="ssc_image">
+      <html>
+    <h2>Mapping Data Sources to DevOps Data Models</h2>
+    <p>Splunk Software Supply Chain (SSC)</p>
+    <div style="width:100%;height:80%;text-align:center;">
+      <img src="/static/app/Splunk_App_for_Software_Supply_Chain/ssc_splunk_image.jpg"/>
+    </div>
+   </html>
+    </panel>
+  </row>
+</dashboard>
